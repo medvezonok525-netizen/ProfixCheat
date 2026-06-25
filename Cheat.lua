@@ -1,23 +1,23 @@
--- Загрузочное окно (маленькое)
+-- Загрузочное окно
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 screenGui.Name = "ProfixsCheat"
 
--- Маленькое загрузочное окно
+-- Загрузочное окно
 local loadFrame = Instance.new("Frame")
 loadFrame.Parent = screenGui
-loadFrame.Size = UDim2.new(0, 250, 0, 100)
-loadFrame.Position = UDim2.new(0.5, -125, 0.5, -50)
-loadFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-loadFrame.BackgroundTransparency = 0.85
+loadFrame.Size = UDim2.new(0, 280, 0, 120)
+loadFrame.Position = UDim2.new(0.5, -140, 0.5, -60)
+loadFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+loadFrame.BackgroundTransparency = 0
 loadFrame.Active = true
 loadFrame.Draggable = true
 
 local loadCorner = Instance.new("UICorner")
 loadCorner.Parent = loadFrame
-loadCorner.CornerRadius = UDim.new(0, 10)
+loadCorner.CornerRadius = UDim.new(0, 12)
 
--- Название (Profixs Cheat)
+-- Название
 local loadTitle = Instance.new("TextLabel")
 loadTitle.Parent = loadFrame
 loadTitle.Size = UDim2.new(1, 0, 0, 40)
@@ -28,7 +28,7 @@ loadTitle.BackgroundTransparency = 1
 loadTitle.Font = Enum.Font.GothamBold
 loadTitle.TextSize = 24
 
--- Текст загрузки (скриптов 0-20)
+-- Текст загрузки
 local loadText = Instance.new("TextLabel")
 loadText.Parent = loadFrame
 loadText.Size = UDim2.new(1, 0, 0, 30)
@@ -59,9 +59,8 @@ local fillCorner = Instance.new("UICorner")
 fillCorner.Parent = progressFill
 fillCorner.CornerRadius = UDim.new(0, 3)
 
--- Загрузка (от 0 до 20 за 20 секунд)
+-- Загрузка
 local count = 0
-local loadComplete = false
 
 coroutine.wrap(function()
     while count <= 20 do
@@ -73,26 +72,19 @@ coroutine.wrap(function()
         end
     end
     
-    loadComplete = true
-    
-    -- Ждем 0.5 секунды и создаем главное окно
     wait(0.5)
-    
-    -- Удаляем загрузочное окно
     loadFrame:Destroy()
-    
-    -- Создаем главное окно с алмазами
     createMainGui()
 end)()
 
--- Функция создания главного окна
+-- Главное окно
 function createMainGui()
     local mainFrame = Instance.new("Frame")
     mainFrame.Parent = screenGui
-    mainFrame.Size = UDim2.new(0, 300, 0, 150)
-    mainFrame.Position = UDim2.new(0.5, -150, 0.5, -75)
-    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
-    mainFrame.BackgroundTransparency = 0.9
+    mainFrame.Size = UDim2.new(0, 350, 0, 150)
+    mainFrame.Position = UDim2.new(0.5, -175, 0.5, -75)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    mainFrame.BackgroundTransparency = 0
     mainFrame.Active = true
     mainFrame.Draggable = true
     
@@ -103,46 +95,40 @@ function createMainGui()
     -- Заголовок
     local title = Instance.new("TextLabel")
     title.Parent = mainFrame
-    title.Size = UDim2.new(1, 0, 0, 40)
+    title.Size = UDim2.new(1, 0, 0, 45)
     title.Position = UDim2.new(0, 0, 0, 0)
-    title.Text = "💎 Добавить алмазы"
-    title.TextColor3 = Color3.fromRGB(255, 215, 0)
+    title.Text = "👊 КИДАЛО"
+    title.TextColor3 = Color3.fromRGB(255, 50, 50)
     title.BackgroundTransparency = 1
     title.Font = Enum.Font.GothamBold
-    title.TextSize = 22
+    title.TextSize = 26
     
-    -- Поле ввода
-    local textBox = Instance.new("TextBox")
-    textBox.Parent = mainFrame
-    textBox.Size = UDim2.new(0.8, 0, 0, 35)
-    textBox.Position = UDim2.new(0.1, 0, 0.35, 0)
-    textBox.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-    textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-    textBox.PlaceholderText = "Введи число (0-100)"
-    textBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-    textBox.Text = ""
-    textBox.Font = Enum.Font.Gotham
-    textBox.TextSize = 18
-    textBox.ClearTextOnFocus = false
+    -- Текст статуса
+    local statusText = Instance.new("TextLabel")
+    statusText.Parent = mainFrame
+    statusText.Size = UDim2.new(0.6, 0, 0, 30)
+    statusText.Position = UDim2.new(0.05, 0, 0.45, 0)
+    statusText.Text = "Режим: ВЫКЛ"
+    statusText.TextColor3 = Color3.fromRGB(200, 200, 200)
+    statusText.BackgroundTransparency = 1
+    statusText.Font = Enum.Font.GothamBold
+    statusText.TextSize = 18
+    statusText.TextXAlignment = Enum.TextXAlignment.Left
     
-    local textCorner = Instance.new("UICorner")
-    textCorner.Parent = textBox
-    textCorner.CornerRadius = UDim.new(0, 8)
+    -- Анимированный выключатель (кнопка)
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Parent = mainFrame
+    toggleButton.Size = UDim2.new(0, 60, 0, 30)
+    toggleButton.Position = UDim2.new(0.75, 0, 0.42, 0)
+    toggleButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+    toggleButton.Text = "ВЫКЛ"
+    toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    toggleButton.Font = Enum.Font.GothamBold
+    toggleButton.TextSize = 14
     
-    -- Кнопка добавления алмазов
-    local addButton = Instance.new("TextButton")
-    addButton.Parent = mainFrame
-    addButton.Size = UDim2.new(0.8, 0, 0, 40)
-    addButton.Position = UDim2.new(0.1, 0, 0.65, 0)
-    addButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
-    addButton.Text = "💎 Добавить алмазы"
-    addButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    addButton.Font = Enum.Font.GothamBold
-    addButton.TextSize = 18
-    
-    local buttonCorner = Instance.new("UICorner")
-    buttonCorner.Parent = addButton
-    buttonCorner.CornerRadius = UDim.new(0, 8)
+    local toggleCorner = Instance.new("UICorner")
+    toggleCorner.Parent = toggleButton
+    toggleCorner.CornerRadius = UDim.new(0, 8)
     
     -- Кнопка закрыть
     local closeButton = Instance.new("TextButton")
@@ -159,99 +145,172 @@ function createMainGui()
     closeCorner.Parent = closeButton
     closeCorner.CornerRadius = UDim.new(0, 5)
     
-    -- Логика кнопки добавления алмазов
-    addButton.MouseButton1Click:Connect(function()
-        local input = tonumber(textBox.Text)
-        if input and input >= 0 and input <= 100 then
-            -- ПОИСК И ИЗМЕНЕНИЕ АЛМАЗОВ
-            -- Пытаемся найти алмазы разными способами
-            local player = game.Players.LocalPlayer
+    -- Переменные состояния
+    local isActive = false
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    -- Анимация дерганья
+    local twitchConnection = nil
+    local throwConnection = nil
+    
+    -- Функция для дерганья персонажа
+    function startTwitching()
+        if twitchConnection then return end
+        
+        twitchConnection = game:GetService("RunService").Heartbeat:Connect(function()
+            if not isActive then return end
             
-            -- Способ 1: через Leaderstats
-            local leaderstats = player:FindFirstChild("leaderstats")
-            if leaderstats then
-                local diamonds = leaderstats:FindFirstChild("Diamonds") or leaderstats:FindFirstChild("Gems") or leaderstats:FindFirstChild("Gem")
-                if diamonds then
-                    diamonds.Value = input
-                    print("[✓] Алмазы установлены на " .. input)
-                    textBox.Text = "Готово!"
-                    wait(1)
-                    textBox.Text = ""
-                    return
-                end
-            end
+            local char = player.Character
+            if not char then return end
             
-            -- Способ 2: через Stats
-            local stats = player:FindFirstChild("Stats")
-            if stats then
-                local diamonds = stats:FindFirstChild("Diamonds") or stats:FindFirstChild("Gems") or stats:FindFirstChild("Gem")
-                if diamonds then
-                    diamonds.Value = input
-                    print("[✓] Алмазы установлены на " .. input)
-                    textBox.Text = "Готово!"
-                    wait(1)
-                    textBox.Text = ""
-                    return
-                end
-            end
+            local hrp = char:FindFirstChild("HumanoidRootPart")
+            local hum = char:FindFirstChild("Humanoid")
             
-            -- Способ 3: поиск по всем дочерним объектам игрока
-            for _, child in ipairs(player:GetChildren()) do
-                if child:IsA("IntValue") or child:IsA("NumberValue") then
-                    local name = child.Name:lower()
-                    if name:find("diamond") or name:find("gem") or name:find("gemstone") or name:find("алмаз") then
-                        child.Value = input
-                        print("[✓] Алмазы установлены на " .. input)
-                        textBox.Text = "Готово!"
-                        wait(1)
-                        textBox.Text = ""
-                        return
-                    end
-                end
-            end
-            
-            -- Способ 4: глобальный поиск по игре (если алмазы в другом месте)
-            local success, result = pcall(function()
-                -- Ищем игровой объект, который обычно хранит валюту
-                local gameData = game:GetService("ReplicatedStorage"):FindFirstChild("Data") or 
-                                workspace:FindFirstChild("Data") or 
-                                game:GetService("Players"):FindFirstChild("Data")
+            if hrp and hum then
+                -- Дергаем персонажа в случайные стороны
+                hrp.Velocity = Vector3.new(
+                    math.random(-30, 30),
+                    math.random(10, 40),
+                    math.random(-30, 30)
+                )
                 
-                if gameData then
-                    local playerData = gameData:FindFirstChild(player.Name)
-                    if playerData then
-                        for _, child in ipairs(playerData:GetChildren()) do
-                            if child:IsA("IntValue") or child:IsA("NumberValue") then
-                                local name = child.Name:lower()
-                                if name:find("diamond") or name:find("gem") or name:find("gemstone") or name:find("алмаз") or name:find("currency") then
-                                    child.Value = input
-                                    print("[✓] Алмазы установлены на " .. input)
-                                    textBox.Text = "Готово!"
-                                    wait(1)
-                                    textBox.Text = ""
-                                    return
-                                end
+                -- Иногда резко поворачиваем
+                if math.random(1, 5) == 1 then
+                    hrp.CFrame = hrp.CFrame * CFrame.Angles(0, math.rad(math.random(-90, 90)), 0)
+                end
+            end
+        end)
+    end
+    
+    -- Функция для выкидывания игроков
+    function startThrowing()
+        if throwConnection then return end
+        
+        throwConnection = game:GetService("RunService").Heartbeat:Connect(function()
+            if not isActive then return end
+            
+            local char = player.Character
+            if not char then return end
+            
+            local hrp = char:FindFirstChild("HumanoidRootPart")
+            if not hrp then return end
+            
+            -- Ищем ближайшего игрока
+            local nearestPlayer = nil
+            local nearestDist = 15 -- Радиус действия
+            
+            for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
+                if otherPlayer ~= player then
+                    local otherChar = otherPlayer.Character
+                    if otherChar then
+                        local otherHrp = otherChar:FindFirstChild("HumanoidRootPart")
+                        if otherHrp then
+                            local dist = (hrp.Position - otherHrp.Position).Magnitude
+                            if dist < nearestDist then
+                                nearestDist = dist
+                                nearestPlayer = otherPlayer
                             end
                         end
                     end
                 end
-            end)
-            
-            if not success then
-                print("[!] Не удалось найти алмазы автоматически")
-                textBox.Text = "Ошибка!"
-                wait(1)
-                textBox.Text = ""
             end
+            
+            -- Если нашли игрока - выкидываем
+            if nearestPlayer then
+                local otherChar = nearestPlayer.Character
+                if otherChar then
+                    local otherHrp = otherChar:FindFirstChild("HumanoidRootPart")
+                    if otherHrp then
+                        -- Выкидываем далеко за карту
+                        local direction = (otherHrp.Position - hrp.Position).unit
+                        local force = Vector3.new(
+                            direction.X * 500,
+                            300 + math.random(0, 200),
+                            direction.Z * 500
+                        )
+                        
+                        otherHrp.Velocity = force
+                        
+                        -- Добавляем урон если есть
+                        local hum = otherChar:FindFirstChild("Humanoid")
+                        if hum then
+                            hum:TakeDamage(100)
+                        end
+                        
+                        print("[🔥] Выкинул игрока: " .. nearestPlayer.Name)
+                    end
+                end
+            end
+        end)
+    end
+    
+    -- Функция остановки всего
+    function stopAll()
+        isActive = false
+        
+        if twitchConnection then
+            twitchConnection:Disconnect()
+            twitchConnection = nil
+        end
+        
+        if throwConnection then
+            throwConnection:Disconnect()
+            throwConnection = nil
+        end
+        
+        -- Возвращаем персонажа в норму
+        local char = player.Character
+        if char then
+            local hrp = char:FindFirstChild("HumanoidRootPart")
+            if hrp then
+                hrp.Velocity = Vector3.new(0, 0, 0)
+            end
+        end
+        
+        statusText.Text = "Режим: ВЫКЛ"
+        statusText.TextColor3 = Color3.fromRGB(200, 200, 200)
+        toggleButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+        toggleButton.Text = "ВЫКЛ"
+    end
+    
+    -- Функция запуска всего
+    function startAll()
+        isActive = true
+        statusText.Text = "Режим: ВКЛ"
+        statusText.TextColor3 = Color3.fromRGB(0, 255, 0)
+        toggleButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+        toggleButton.Text = "ВКЛ"
+        
+        startTwitching()
+        startThrowing()
+    end
+    
+    -- Логика кнопки включения/выключения
+    toggleButton.MouseButton1Click:Connect(function()
+        if isActive then
+            stopAll()
         else
-            textBox.Text = "Введи число 0-100!"
-            wait(1)
-            textBox.Text = ""
+            startAll()
+        end
+    end)
+    
+    -- Обновляем персонажа если он пересоздался
+    player.CharacterAdded:Connect(function(newChar)
+        wait(1)
+        if isActive then
+            -- Перезапускаем всё для нового персонажа
+            stopAll()
+            wait(0.5)
+            startAll()
         end
     end)
     
     -- Закрытие окна
     closeButton.MouseButton1Click:Connect(function()
+        stopAll()
         mainFrame:Destroy()
     end)
 end
